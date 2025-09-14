@@ -13,7 +13,6 @@ public class GunScript : MonoBehaviour
     void Update()
     {
 
-
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
