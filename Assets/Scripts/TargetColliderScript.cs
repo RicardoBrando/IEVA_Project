@@ -18,6 +18,6 @@ public class TargetColliderScript : MonoBehaviour
     void HitByBullet()
     {
         Debug.Log("Cible Touchée");
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
