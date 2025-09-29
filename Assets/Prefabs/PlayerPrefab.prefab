@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 9034447583319650069}
   - component: {fileID: 5205653669784621947}
   - component: {fileID: 2734424310913573350}
+  - component: {fileID: 5709285431879837245}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -251,7 +252,10 @@ MonoBehaviour:
   walkSpeed: 7
   sprintSpeed: 10
   wallrunSpeed: 7
-  groundDrag: 5
+  slideSpeed: 30
+  speedIncreaseMultiplier: 1.5
+  slopeIncreaseMultiplier: 2.5
+  groundDrag: 4
   jumpForce: 13
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -261,9 +265,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isGrounded: 0
+  maxSlopeAngle: 40
   orientation: {fileID: 3612841369590656585}
   state: 0
   isWallrunning: 0
+  isSliding: 0
 --- !u!114 &2734424310913573350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,12 +289,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   wallRunForce: 200
-  maxWallRunTime: 1
-  wallJumpForce: 7
-  wallJumpSideForce: 7
+  maxWallRunTime: 1.5
+  wallJumpForce: 10
+  wallJumpSideForce: 15
   wallCheckDistance: 0.7
   minJumpHeight: 2
   exitWallTime: 0.5
-  useGravity: 0
-  gravityCounterForce: 10
+  useGravity: 1
+  gravityCounterForce: 20
   orientation: {fileID: 3612841369590656585}
+--- !u!114 &5709285431879837245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875835406364581670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef810ca9b1ebc0468a5f05d7ac138ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 3612841369590656585}
+  playerObj: {fileID: 847550778812396473}
+  slideForce: 200
+  slideYScale: 0.5
