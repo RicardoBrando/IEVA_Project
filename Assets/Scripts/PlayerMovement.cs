@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public float wallrunSpeed;
 
     public float groundDrag;
 
@@ -34,8 +35,11 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         sprinting,
+        wallrunning,
         airborne
     }
+
+    public bool isWallrunning;
 
     private void Start()
     {
@@ -77,8 +81,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        // Mode - Wallrunning
+        if(isWallrunning)
+        {
+            state = PlayerState.wallrunning;
+            moveSpeed = wallrunSpeed;
+        }
+
         // Mode - Sprinting
-        if(isGrounded && Input.GetButton("Sprint"))
+        else if(isGrounded && Input.GetButton("Sprint"))
         {
             state = PlayerState.sprinting;
             moveSpeed = sprintSpeed;
