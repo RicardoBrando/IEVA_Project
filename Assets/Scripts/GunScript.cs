@@ -4,6 +4,8 @@ public class GunScript : MonoBehaviour
 {
 
     public Transform FirePoint;
+    
+    
     private void Start()
     {
         
