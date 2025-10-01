@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
+        
         if (Input.GetButton("Jump") && canJump && isGrounded)
         {
             canJump = false;
