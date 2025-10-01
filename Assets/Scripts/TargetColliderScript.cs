@@ -18,6 +18,8 @@ public class TargetColliderScript : MonoBehaviour
     void HitByBullet()
     {
         Debug.Log("Cible Touchée");
+        GameObject gun = GameObject.FindGameObjectWithTag("Gun");
+        gun.GetComponent<GunScript>().emptyChamber(); 
         //Destroy(gameObject);
     }
 }

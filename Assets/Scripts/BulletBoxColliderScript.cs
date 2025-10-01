@@ -3,29 +3,33 @@ using UnityEngine;
 
 public class BulletBoxScript : MonoBehaviour
 {
-
-    public GameObject BulletBoxModel;
-    private int BulletNumber = 5;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Animator BulletBoxAnimator;
+    private int bulletNumber = 1;
+    private float timeToDestroy = 4.0f;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("zzzz");
-        if (other.gameObject.tag == "PlayerObject")
+        Debug.Log("Trigger entered by: " + other.gameObject.name);
+        if (bulletNumber > 0)
         {
-            BulletBoxModel.GetComponent<Animation>().Play();
-            Debug.Log("oudqzzi");
+            if (other.CompareTag("PlayerObject"))
+            {
+                GameObject gun = GameObject.FindGameObjectWithTag("Gun");
+                if (gun.GetComponent<GunScript>().magSize < gun.GetComponent<GunScript>().maxMagSize)
+                {
+                    BulletBoxAnimator.enabled = true;
+                    gun.GetComponent<GunScript>().refillGun(bulletNumber);
+                    bulletNumber = 0;
+                    Invoke("DestroyBulletBox", timeToDestroy);
+                }
+            }
         }
     }
+
+
+    private void DestroyBulletBox()
+    {
+        Destroy(BulletBoxAnimator.gameObject.transform.parent.gameObject);
+    }
+
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BulletBox
   - PlayerObject
+  - Gun
   layers:
   - Default
   - TransparentFX
