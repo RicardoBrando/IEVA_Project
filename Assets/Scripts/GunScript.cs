@@ -12,7 +12,7 @@ public class GunScript : MonoBehaviour
     private bool isReloading = false;
     public Animator GunReloadAnimator;
 
-
+    
     private void Start()
     {
         
@@ -36,6 +36,7 @@ public class GunScript : MonoBehaviour
                     {
                         hit.collider.SendMessage("HitByBullet", SendMessageOptions.DontRequireReceiver);
                     }
+                    emptyChamber();
                 }
             }
 
