@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -5,16 +6,36 @@ using UnityEngine;
 public class UIPlayerData : MonoBehaviour
 {
     [Header("Player")]
-    public Rigidbody playerRb;
+    public Rigidbody playerRb = null;
     public TMP_Text Ui_speed;
 
     private void Start()
     {
-        playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        StopAllCoroutines();
+        StartCoroutine(FindPlayerRigidbody());
     }
 
     private void Update()
     {
-        Ui_speed.SetText("Speed : "+playerRb.linearVelocity.magnitude.ToString("F2"));
+        if(playerRb != null)
+            Ui_speed.SetText("Speed : "+playerRb.linearVelocity.magnitude.ToString("F2"));
+    }
+
+    public void SetPlayerRb(Rigidbody playerRb)
+    {
+        this.playerRb = playerRb;
+    }
+
+    private IEnumerator FindPlayerRigidbody()
+    {
+        while(playerRb == null)
+        {
+            GameObject player = null;
+            player = GameObject.FindGameObjectWithTag("Player");
+            if(player != null)
+                playerRb = player.GetComponent<Rigidbody>();
+
+            yield return null;
+        }
     }
 }

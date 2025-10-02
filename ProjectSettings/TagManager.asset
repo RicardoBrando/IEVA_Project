@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PlayerCameraPosition
   - PlayerOrientation
+  - DebugUI
+  - Killzone
+  - CheckpointTrigger
   layers:
   - Default
   - TransparentFX

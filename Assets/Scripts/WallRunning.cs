@@ -31,7 +31,7 @@ public class WallRunning : MonoBehaviour
     private float exitWallTimer;
 
     [Header("Gravity")]
-    public bool useGravity;
+    public bool useGravity = true;
     public float gravityCounterForce;
 
     [Header("References")]

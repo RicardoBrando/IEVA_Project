@@ -10,42 +10,32 @@ public class CameraMovement : MonoBehaviour
     public float xRotation;
     public float yRotation;
 
-    private bool orientationFound;
 
     [Header("Transforms")]
     public Transform orientation = null;
 
     void Start()
     {
-        StartCoroutine(SearchForPlayerOrientationCoroutine());
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
-        if (orientationFound)
-        {
-            float mouseX = Input.GetAxisRaw("Mouse X");
-            float mouseY = Input.GetAxisRaw("Mouse Y");
+        float mouseX = Input.GetAxisRaw("Mouse X");
+        float mouseY = Input.GetAxisRaw("Mouse Y");
 
-            xRotation -= mouseY;
-            yRotation += mouseX;
+        xRotation -= mouseY;
+        yRotation += mouseX;
 
-            xRotation = Mathf.Clamp(xRotation, -90.0f, 90.0f);
+        xRotation = Mathf.Clamp(xRotation, -90.0f, 90.0f);
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        }
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    private IEnumerator SearchForPlayerOrientationCoroutine()
+    public void SetOrientation(Transform orientation)
     {
-        while (orientation == null)
-        {
-            orientation = GameObject.FindGameObjectWithTag("PlayerOrientation").transform;
-            yield return null;
-        }
-        orientationFound = true;
+        this.orientation = orientation;
     }
 }
