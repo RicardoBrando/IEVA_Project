@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3612841369590656585}
   m_Layer: 0
   m_Name: Orientation
-  m_TagString: Untagged
+  m_TagString: PlayerOrientation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 8512194531780817016}
   m_Layer: 0
   m_Name: CameraPosition
-  m_TagString: Untagged
+  m_TagString: PlayerCameraPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 5205653669784621947}
   - component: {fileID: 2734424310913573350}
   - component: {fileID: 5709285431879837245}
+  - component: {fileID: 3204322622923081058}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -314,3 +315,16 @@ MonoBehaviour:
   playerObj: {fileID: 847550778812396473}
   slideForce: 200
   slideYScale: 0.5
+--- !u!114 &3204322622923081058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875835406364581670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3851854161ac642a72010a0341d0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []

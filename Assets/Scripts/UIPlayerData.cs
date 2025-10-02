@@ -6,8 +6,12 @@ public class UIPlayerData : MonoBehaviour
 {
     [Header("Player")]
     public Rigidbody playerRb;
-
     public TMP_Text Ui_speed;
+
+    private void Start()
+    {
+        playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
