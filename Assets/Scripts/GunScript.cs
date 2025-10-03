@@ -8,14 +8,15 @@ public class GunScript : MonoBehaviour
     public int magSize;
     public int maxMagSize;
     public int currentMagSize;
+    public int maxCurrentMagSize;
+
     private int timeToReload = 2;
     private bool isReloading = false;
     public Animator GunReloadAnimator;
+    public ParticleSystem GunShotParticleSystem;
 
-    
     private void Start()
     {
-        
     }
 
     void Update()
@@ -24,13 +25,14 @@ public class GunScript : MonoBehaviour
         {
             if (isReloading == false)
             {
-                if (currentMagSize == 0 && magSize > 0)
+                if (currentMagSize <= 0 && magSize > 0)
                 {
                     StartCoroutine(reloadGun());
                 }
 
                 if (currentMagSize > 0)
                 {
+                    GunShotParticleSystem.Play();
                     RaycastHit hit;
                     if (Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
                     {
@@ -40,6 +42,13 @@ public class GunScript : MonoBehaviour
                 }
             }
 
+        }
+        if (Input.GetButton("Reload"))
+        {
+            if (isReloading == false && currentMagSize < maxCurrentMagSize && magSize > 0)
+            {
+                StartCoroutine(reloadGun());
+            }
         }
         Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
     }
@@ -57,17 +66,16 @@ public class GunScript : MonoBehaviour
     {
         isReloading = true;
         GunReloadAnimator.enabled = true;
+
         yield return new WaitForSeconds(timeToReload);
-        if (magSize <= 5)
-        {
-            currentMagSize = magSize;
-            magSize = 0;
-        }
-        else
-        {
-            currentMagSize = 5;
-            magSize -= 5;
-        }
+
+        int bulletsNeededToFillCurrentMag = maxCurrentMagSize - currentMagSize;
+
+        int bulletsToLoad = Mathf.Min(bulletsNeededToFillCurrentMag, magSize);
+
+        currentMagSize += bulletsToLoad;
+        magSize -= bulletsToLoad;
+
         GunReloadAnimator.enabled = false;
         isReloading = false;
     }
