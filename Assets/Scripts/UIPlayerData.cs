@@ -6,7 +6,9 @@ public class UIPlayerData : MonoBehaviour
     [Header("Player")]
     public Rigidbody playerRb;
 
+
     public TMP_Text Ui_speed;
+
 
     private void Update()
     {
