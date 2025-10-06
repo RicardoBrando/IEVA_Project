@@ -9,6 +9,7 @@ public class UIPlayerData : MonoBehaviour
     public Rigidbody playerRb = null;
     public TMP_Text Ui_speed;
 
+
     private void Update()
     {
         if(playerRb != null)
