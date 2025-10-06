@@ -13,6 +13,7 @@ TagManager:
   - BulletBox
   - PlayerObject
   - Gun
+  - Fugitive
   layers:
   - Default
   - TransparentFX
