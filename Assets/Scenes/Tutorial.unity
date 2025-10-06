@@ -10813,6 +10813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604850713}
   - component: {fileID: 1604850714}
+  - component: {fileID: 1604850715}
   m_Layer: 0
   m_Name: Trigger - ChronoEnd
   m_TagString: Untagged
@@ -10829,7 +10830,7 @@ Transform:
   m_GameObject: {fileID: 1604850712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 74.200005, y: 39.45, z: 121.32}
+  m_LocalPosition: {x: 76.9, y: 39.45, z: 121.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10856,6 +10857,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.608139, z: 9.282127}
   m_Center: {x: 0, y: 0.8040695, z: 0.34784317}
+--- !u!114 &1604850715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604850712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02b972ca9294cd46b191169d7d3899b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1648754524
 GameObject:
   m_ObjectHideFlags: 0
