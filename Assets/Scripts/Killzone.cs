@@ -6,7 +6,7 @@ public class Killzone : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collider)
     {
-        if (!collider.CompareTag("Player"))
+        if (!collider.CompareTag("PlayerObject"))
             return;
         collider.transform.parent.GetComponent<PlayerRespawn>().Respawn(false);
     }

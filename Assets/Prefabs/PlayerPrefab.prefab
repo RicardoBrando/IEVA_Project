@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 4168210763300381788}
   m_Layer: 0
   m_Name: PlayerObject
-  m_TagString: Player
+  m_TagString: PlayerObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,6 +394,7 @@ MonoBehaviour:
   maxSlopeAngle: 40
   orientation: {fileID: 3612841369590656585}
   forwardWall: 0
+  forwardWallTimer: 1
   state: 0
   isWallrunning: 0
   isSliding: 0

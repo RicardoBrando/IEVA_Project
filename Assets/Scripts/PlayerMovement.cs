@@ -34,8 +34,11 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
+    [Header("Facing wall")]
     public Transform orientation;
     public bool forwardWall;
+    private float _forwardWallTime;
+    public float forwardWallTimer;
 
     float horizontalInput;
     float verticalInput;
@@ -44,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    [Header("State Machine")]
     public PlayerState state;
     public enum PlayerState
     {
@@ -77,6 +81,13 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = groundDrag;
         else
             rb.linearDamping = 0;
+
+        _forwardWallTime += Time.deltaTime;
+        if (_forwardWallTime >= forwardWallTimer)
+        {
+            forwardWall = false;
+            _forwardWallTime = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -170,7 +181,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else
                 time += Time.deltaTime * speedIncreaseMultiplier;
-            
+
+            if (forwardWall) time = difference;
             yield return null;
         }
 

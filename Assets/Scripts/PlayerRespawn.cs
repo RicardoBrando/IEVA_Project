@@ -10,13 +10,12 @@ public class PlayerRespawn : MonoBehaviour
     private void Start()
     {
         GameObject[] checkpoints;
-        GameObject[] cps = GameObject.FindGameObjectsWithTag("Respawn");
-        checkpoints = new GameObject[cps.Length];
-        int j = cps.Length - 1;
-        for (int i = 0; i < cps.Length; i++)
+        GameObject cpGameObject = GameObject.Find("Checkpoints");
+        checkpoints = new GameObject[cpGameObject.transform.childCount];
+
+        for (int i = 0; i < checkpoints.Length; i++)
         {
-            checkpoints[j] = cps[i];
-            j--;
+            checkpoints[i] = cpGameObject.transform.GetChild(i).gameObject;
         }
 
         _currentCheckpoint = checkpoints[0];
@@ -25,8 +24,10 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Respawn"))
+        if (Input.GetButtonDown("Restart"))
             Respawn(true);
+        if (Input.GetButtonDown("Checkpoint"))
+            Respawn(false);
     }
 
     public void SetRespawnPoint(GameObject point)
