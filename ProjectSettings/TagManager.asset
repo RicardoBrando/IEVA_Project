@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - PlayerCameraPosition
+  - PlayerOrientation
+  - DebugUI
+  - Killzone
+  - CheckpointTrigger
+  - Wall
   - BulletBox
   - PlayerObject
   - Gun

@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class WallRunning : MonoBehaviour
@@ -31,10 +32,11 @@ public class WallRunning : MonoBehaviour
     private float exitWallTimer;
 
     [Header("Gravity")]
-    public bool useGravity;
+    public bool useGravity = true;
     public float gravityCounterForce;
 
     [Header("References")]
+    public CameraMovement cm;
     public Transform orientation;
     private PlayerMovement pm;
     private Rigidbody rb;
@@ -43,6 +45,7 @@ public class WallRunning : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        cm = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
     }
 
     private void FixedUpdate()
@@ -120,6 +123,7 @@ public class WallRunning : MonoBehaviour
         pm.isWallrunning = true;
         _wallRunTimer = maxWallRunTime;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        cm.UnlockCamera();
     }
 
     private void WallrunMovement()
@@ -131,6 +135,8 @@ public class WallRunning : MonoBehaviour
 
         if((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
+
+        orientation.forward = wallForward;
 
         // Forward force
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
@@ -147,6 +153,7 @@ public class WallRunning : MonoBehaviour
     {
         rb.useGravity = true;
         pm.isWallrunning = false;
+        cm.LockCamera();
     }
 
     private void WallJump()

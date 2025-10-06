@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private bool exitingSlope;
 
     public Transform orientation;
+    public bool forwardWall;
 
     float horizontalInput;
     float verticalInput;
@@ -60,11 +61,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         canJump = true;
+        forwardWall = false;
     }
 
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
         
         ReadInput();
         SpeedControl();
@@ -85,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
+        
         if (Input.GetButton("Jump") && canJump && isGrounded)
         {
             canJump = false;
@@ -186,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
         else if(isGrounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        else if(!isGrounded)
+        else if(!isGrounded && !forwardWall)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
         if(!isWallrunning) rb.useGravity = !OnSlope();
