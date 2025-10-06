@@ -4,12 +4,10 @@ using UnityEngine.Events;
 
 public class Killzone : MonoBehaviour
 {
-    [SerializeField] public UnityEvent onTriggerEnter;
-
     private void OnTriggerEnter(Collider collider)
     {
-        if (!collider.CompareTag("Killzone"))
+        if (!collider.CompareTag("Player"))
             return;
-        onTriggerEnter?.Invoke();
+        collider.transform.parent.GetComponent<PlayerRespawn>().Respawn(false);
     }
 }

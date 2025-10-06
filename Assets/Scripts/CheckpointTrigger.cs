@@ -4,11 +4,10 @@ using UnityEngine.Events;
 
 public class CheckpointTrigger : MonoBehaviour
 {
-    public PlayerRespawn playerRespawn;
     private void OnTriggerEnter(Collider collider)
     {
-        if (!collider.CompareTag("CheckpointTrigger"))
+        if (!collider.CompareTag("Player"))
             return;
-        playerRespawn.SetRespawnPoint(collider.transform.parent.gameObject);
+        collider.transform.parent.GetComponent<PlayerRespawn>().SetRespawnPoint(transform.parent.gameObject);
     }
 }

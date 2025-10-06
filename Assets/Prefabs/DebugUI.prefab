@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5690073046410821100}
   m_Layer: 5
   m_Name: DebugUI
-  m_TagString: Untagged
+  m_TagString: DebugUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

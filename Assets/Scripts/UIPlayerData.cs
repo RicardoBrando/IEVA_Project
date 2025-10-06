@@ -9,12 +9,6 @@ public class UIPlayerData : MonoBehaviour
     public Rigidbody playerRb = null;
     public TMP_Text Ui_speed;
 
-    private void Start()
-    {
-        StopAllCoroutines();
-        StartCoroutine(FindPlayerRigidbody());
-    }
-
     private void Update()
     {
         if(playerRb != null)
@@ -24,18 +18,5 @@ public class UIPlayerData : MonoBehaviour
     public void SetPlayerRb(Rigidbody playerRb)
     {
         this.playerRb = playerRb;
-    }
-
-    private IEnumerator FindPlayerRigidbody()
-    {
-        while(playerRb == null)
-        {
-            GameObject player = null;
-            player = GameObject.FindGameObjectWithTag("Player");
-            if(player != null)
-                playerRb = player.GetComponent<Rigidbody>();
-
-            yield return null;
-        }
     }
 }

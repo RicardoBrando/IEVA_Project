@@ -9,6 +9,7 @@ TagManager:
   - DebugUI
   - Killzone
   - CheckpointTrigger
+  - Wall
   layers:
   - Default
   - TransparentFX
