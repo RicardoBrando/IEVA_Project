@@ -26,9 +26,7 @@ public class FugitiveScript : MonoBehaviour
     {
         if (!collider.CompareTag("PlayerObject"))
             return;
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
 
-        Vector3 directionToTarget = target.position - transform.position;
-        agent.SetDestination(directionToTarget);
     }
 }

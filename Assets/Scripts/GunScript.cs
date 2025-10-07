@@ -34,7 +34,8 @@ public class GunScript : MonoBehaviour
                 {
                     GunShotParticleSystem.Play();
                     RaycastHit hit;
-                    if (Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
+                    Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * 10000, Color.red);
+                    if (Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 10000))
                     {
                         hit.collider.SendMessage("HitByBullet", SendMessageOptions.DontRequireReceiver);
                     }
@@ -50,7 +51,6 @@ public class GunScript : MonoBehaviour
                 StartCoroutine(reloadGun());
             }
         }
-        Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
     }
     public void emptyChamber()
     {
