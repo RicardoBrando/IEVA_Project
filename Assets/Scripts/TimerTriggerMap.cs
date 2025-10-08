@@ -16,16 +16,28 @@ public class TimerTrigger : MonoBehaviour
     {
         if (isEndTrigger && transform.gameObject.GetComponent<Collider>().enabled == false)
         {
-            int score = Mathf.FloorToInt(1000f / IGTimer.GetComponent<InGameTimer>().levelTime);
+
+            int score2 = Mathf.FloorToInt(1000f / IGTimer.GetComponent<InGameTimer>().levelTime);
 
             if (levelNumber == 1)
             {
-                SaveDataScript.GlobalData.level1TimeScores.Add(score);
+                float levelTime = IGTimer.GetComponent<InGameTimer>().levelTime; // en secondes
+                int maxTimerScore = 1000;
+
+                float bestTime = 60f;   
+                float worstTime = 150f; 
+
+                float t = Mathf.InverseLerp(worstTime, bestTime, levelTime);
+                int timerScore = Mathf.RoundToInt(t * maxTimerScore);
+                Debug.Log(timerScore);
+                int TargetScore = SaveDataScript.instance.targetPoints * 100; 
+
+                SaveDataScript.GlobalData.level1TimeScores.Add(timerScore + TargetScore);
                 SaveDataScript.GlobalData.level1TimeScores.Sort();
             }
             else if (levelNumber == 2)
             {
-                SaveDataScript.GlobalData.level2TimeScores.Add(score);
+                SaveDataScript.GlobalData.level2TimeScores.Add(1);
                 SaveDataScript.GlobalData.level2TimeScores.Sort();
             }
             SaveDataScript.instance.SaveToJson();

@@ -15,6 +15,8 @@ public class SaveDataScript : MonoBehaviour
     private string GoldColor = "#FFD700";
     public static Color CurrentColor;
 
+    public int targetPoints;
+
     private void Awake()
     {
         if (instance != null)
@@ -24,7 +26,6 @@ public class SaveDataScript : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
-
 
         string filepath = Application.persistentDataPath + "/dataSave.json";
         if (System.IO.File.Exists(filepath))
@@ -54,6 +55,7 @@ public class SaveDataScript : MonoBehaviour
         {
             ColorUtility.TryParseHtmlString(BronzeColor, out CurrentColor);
         }
+        targetPoints = 0;
     }
 
 

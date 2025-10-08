@@ -26,7 +26,7 @@ public class TargetColliderScript : MonoBehaviour
     void HitByBullet()
     {
         Debug.Log("Cible Touchée");
-
+        SaveDataScript.instance.targetPoints++;
         Destroy(gameObject);
     }
     
