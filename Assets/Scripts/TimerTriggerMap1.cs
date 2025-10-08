@@ -23,7 +23,6 @@ public class TimerTriggerMap1 : MonoBehaviour
             SaveDataScript.GlobalData.level1TimeScores.Add(Mathf.FloorToInt(1000f /IGTimer.GetComponent<InGameTimer>().levelTime));
             SaveDataScript.GlobalData.level1TimeScores.Sort();
             transform.gameObject.SetActive(false);
-            
         }
     }
     private void OnTriggerEnter(Collider collider)

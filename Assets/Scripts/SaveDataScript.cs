@@ -24,9 +24,17 @@ public class SaveDataScript : MonoBehaviour
         if (GlobalData.level2TimeScores == null)
             GlobalData.level2TimeScores = new List<int>();
         
-        if (GlobalData.fugitiveGotCaught)
+        if (GlobalData.fugitiveGotCaughtLevel2)
         {
             // Debloquer material
+        }
+        else if (GlobalData.fugitiveGotCaughtLevel1)
+        {
+
+        }
+        else
+        {
+
         }
     }
 
@@ -58,8 +66,8 @@ public class DataToSave
 {
     public List<int> level1TimeScores = new List<int>();
     public List<int> level2TimeScores = new List<int>();
-    public List<int> level1TargetScores = new List<int>();
-    public List<int> level2TargetScores = new List<int>();
-    public bool fugitiveGotCaught = false;
+
+    public bool fugitiveGotCaughtLevel1 = false;
+    public bool fugitiveGotCaughtLevel2 = false;
 
 }

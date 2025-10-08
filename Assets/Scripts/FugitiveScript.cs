@@ -26,6 +26,7 @@ public class FugitiveScript : MonoBehaviour
     {
         if (!collider.CompareTag("PlayerObject"))
             return;
+        SaveDataScript.GlobalData.fugitiveGotCaughtLevel1 = true;
         Destroy(this.transform.parent.gameObject);
 
     }
