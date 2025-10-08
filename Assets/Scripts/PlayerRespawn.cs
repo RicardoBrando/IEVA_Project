@@ -7,8 +7,11 @@ public class PlayerRespawn : MonoBehaviour
     public GameObject _currentCheckpoint;
     public GameObject _startCheckpoint;
 
+    private Rigidbody rb;
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         GameObject[] checkpoints;
         GameObject cpGameObject = GameObject.Find("Checkpoints");
         checkpoints = new GameObject[cpGameObject.transform.childCount];
@@ -38,6 +41,8 @@ public class PlayerRespawn : MonoBehaviour
     public void Respawn(bool start)
     {
         transform.gameObject.SetActive(false);
+        rb.linearVelocity = Vector3.zero;
+        rb.useGravity = false;
         if (start)
         {
             transform.position = _startCheckpoint.transform.position;
@@ -49,7 +54,8 @@ public class PlayerRespawn : MonoBehaviour
             transform.position = _currentCheckpoint.transform.position;
             transform.rotation = _currentCheckpoint.transform.rotation;
         }
-            
+
+        rb.useGravity = true;
         transform.gameObject.SetActive(true);
     }
 }
