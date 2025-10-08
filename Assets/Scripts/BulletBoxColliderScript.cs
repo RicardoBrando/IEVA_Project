@@ -9,7 +9,6 @@ public class BulletBoxScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered by: " + other.gameObject.name);
         if (bulletNumber > 0)
         {
             if (other.CompareTag("PlayerObject"))

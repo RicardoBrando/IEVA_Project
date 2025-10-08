@@ -19,9 +19,9 @@ public class TimerTriggerMap2 : MonoBehaviour
     {
         if (isEndTrigger && transform.gameObject.GetComponent<Collider>().enabled == false)
         {
-            Debug.Log("ouuu");
             SaveDataScript.GlobalData.level2TimeScores.Add(Mathf.FloorToInt(1000f /IGTimer.GetComponent<InGameTimer>().levelTime));
             SaveDataScript.GlobalData.level2TimeScores.Sort();
+
             transform.gameObject.SetActive(false);
             
         }

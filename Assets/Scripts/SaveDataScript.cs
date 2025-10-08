@@ -1,15 +1,32 @@
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using Color = UnityEngine.Color;
+using ColorUtility = UnityEngine.ColorUtility;
 
 public class SaveDataScript : MonoBehaviour
 {
     public static DataToSave GlobalData = new DataToSave();
+    private static SaveDataScript instance;
+
+    private string BronzeColor = "#B87333";
+    private string SilverColor = "#C0C0C0";
+    private string GoldColor = "#FFD700";
+    public static Color CurrentColor;
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+
         string filepath = Application.persistentDataPath + "/dataSave.json";
-        Debug.Log(filepath);
         if (System.IO.File.Exists(filepath))
         {
             LoadFromJson();
@@ -24,19 +41,21 @@ public class SaveDataScript : MonoBehaviour
         if (GlobalData.level2TimeScores == null)
             GlobalData.level2TimeScores = new List<int>();
         
+
         if (GlobalData.fugitiveGotCaughtLevel2)
         {
-            // Debloquer material
+            ColorUtility.TryParseHtmlString(GoldColor, out CurrentColor);
         }
         else if (GlobalData.fugitiveGotCaughtLevel1)
         {
-
+            ColorUtility.TryParseHtmlString(SilverColor, out CurrentColor);
         }
         else
         {
-
+            ColorUtility.TryParseHtmlString(BronzeColor, out CurrentColor);
         }
     }
+
 
     public void SaveToJson()
     {

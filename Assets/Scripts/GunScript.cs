@@ -14,10 +14,13 @@ public class GunScript : MonoBehaviour
     private bool isReloading = false;
     public Animator GunReloadAnimator;
     public ParticleSystem GunShotParticleSystem;
+    public Material GunMaterial;
 
     private void Start()
     {
+        ChangGunColor();
     }
+
 
     void Update()
     {
@@ -78,5 +81,11 @@ public class GunScript : MonoBehaviour
 
         GunReloadAnimator.enabled = false;
         isReloading = false;
+    }
+
+
+    public void ChangGunColor()
+    {
+        GunMaterial.SetColor("_Color", SaveDataScript.CurrentColor);
     }
 }
