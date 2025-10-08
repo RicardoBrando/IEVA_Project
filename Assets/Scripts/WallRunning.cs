@@ -124,6 +124,11 @@ public class WallRunning : MonoBehaviour
         _wallRunTimer = maxWallRunTime;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         cm.UnlockCamera();
+
+        // camera effect
+        cm.DoFov(90f);
+        if(_leftWall) cm.DoTilt(-5f);
+        if(_rightWall) cm.DoTilt(5f);
     }
 
     private void WallrunMovement()
@@ -154,6 +159,8 @@ public class WallRunning : MonoBehaviour
         rb.useGravity = true;
         pm.isWallrunning = false;
         cm.LockCamera();
+        cm.DoFov(80f);
+        cm.DoTilt(0f);
     }
 
     private void WallJump()

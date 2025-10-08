@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Net;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CameraMovement : MonoBehaviour
 
     [Header("Transforms")]
     public Transform orientation = null;
+    public Transform camHolder;
 
     public PlayerMovement pm;
 
@@ -34,7 +36,7 @@ public class CameraMovement : MonoBehaviour
 
         xRotation = Mathf.Clamp(xRotation, -90.0f, 90.0f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        camHolder.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         
         if(isLocked)
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
@@ -59,5 +61,15 @@ public class CameraMovement : MonoBehaviour
     {
         isLocked = true;
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    public void DoFov(float endValue)
+    {
+        GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+    }
+
+    public void DoTilt(float zTilt)
+    {
+        transform.DOLocalRotate(new Vector3(0, 0, zTilt), 0.25f);
     }
 }
