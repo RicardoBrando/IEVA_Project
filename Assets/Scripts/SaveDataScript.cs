@@ -8,7 +8,7 @@ using ColorUtility = UnityEngine.ColorUtility;
 public class SaveDataScript : MonoBehaviour
 {
     public static DataToSave GlobalData = new DataToSave();
-    private static SaveDataScript instance;
+    public static SaveDataScript instance;
 
     private string BronzeColor = "#B87333";
     private string SilverColor = "#C0C0C0";
@@ -78,6 +78,8 @@ public class SaveDataScript : MonoBehaviour
     {
         SaveToJson();
     }
+
+
 }
 
 [System.Serializable]

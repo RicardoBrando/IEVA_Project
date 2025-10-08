@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class TimerTriggerMap1 : MonoBehaviour
+public class TimerTrigger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     public GameObject IGTimer;
     public bool isEndTrigger;
+    public int levelNumber; 
 
     private void Start()
     {
@@ -13,22 +12,33 @@ public class TimerTriggerMap1 : MonoBehaviour
         transform.gameObject.GetComponent<Collider>().enabled = true;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (isEndTrigger && transform.gameObject.GetComponent<Collider>().enabled == false)
         {
-            Debug.Log("ouuu");
-            SaveDataScript.GlobalData.level1TimeScores.Add(Mathf.FloorToInt(1000f /IGTimer.GetComponent<InGameTimer>().levelTime));
-            SaveDataScript.GlobalData.level1TimeScores.Sort();
+            int score = Mathf.FloorToInt(1000f / IGTimer.GetComponent<InGameTimer>().levelTime);
+
+            if (levelNumber == 1)
+            {
+                SaveDataScript.GlobalData.level1TimeScores.Add(score);
+                SaveDataScript.GlobalData.level1TimeScores.Sort();
+            }
+            else if (levelNumber == 2)
+            {
+                SaveDataScript.GlobalData.level2TimeScores.Add(score);
+                SaveDataScript.GlobalData.level2TimeScores.Sort();
+            }
+            SaveDataScript.instance.SaveToJson();
+
             transform.gameObject.SetActive(false);
         }
     }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (!collider.CompareTag("PlayerObject"))
             return;
+
         IGTimer.GetComponent<InGameTimer>().isPlaying = !IGTimer.GetComponent<InGameTimer>().isPlaying;
         transform.gameObject.GetComponent<Collider>().enabled = false;
     }
