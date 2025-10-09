@@ -29,7 +29,6 @@ public class TimerTrigger : MonoBehaviour
 
                 float t = Mathf.InverseLerp(worstTime, bestTime, levelTime);
                 int timerScore = Mathf.RoundToInt(t * maxTimerScore);
-                Debug.Log(timerScore);
                 int TargetScore = SaveDataScript.instance.targetPoints * 100; 
 
                 SaveDataScript.GlobalData.level1TimeScores.Add(timerScore + TargetScore);
@@ -37,8 +36,17 @@ public class TimerTrigger : MonoBehaviour
             }
             else if (levelNumber == 2)
             {
-                SaveDataScript.GlobalData.level2TimeScores.Add(1);
+                float levelTime = IGTimer.GetComponent<InGameTimer>().levelTime; // en secondes
+                int maxTimerScore = 1000;
+
+                float bestTime = 180f;
+                float worstTime = 300f;
+                int TargetScore = SaveDataScript.instance.targetPoints * 100;
+                float t = Mathf.InverseLerp(worstTime, bestTime, levelTime);
+                int timerScore = Mathf.RoundToInt(t * maxTimerScore);
+                SaveDataScript.GlobalData.level2TimeScores.Add(timerScore + TargetScore);
                 SaveDataScript.GlobalData.level2TimeScores.Sort();
+
             }
             SaveDataScript.instance.SaveToJson();
 

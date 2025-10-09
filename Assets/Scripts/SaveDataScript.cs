@@ -76,11 +76,6 @@ public class SaveDataScript : MonoBehaviour
 
         GlobalData = JsonUtility.FromJson<DataToSave>(dataString);
     }
-    void OnApplicationQuit()
-    {
-        SaveToJson();
-    }
-
 
 }
 

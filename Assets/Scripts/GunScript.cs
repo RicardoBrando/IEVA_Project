@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GunScript : MonoBehaviour
 {
@@ -15,10 +17,12 @@ public class GunScript : MonoBehaviour
     public Animator GunReloadAnimator;
     public ParticleSystem GunShotParticleSystem;
     public Material GunMaterial;
+    public AudioSource GunAudioSource;
 
     private void Start()
     {
         ChangGunColor();
+        GunAudioSource.Stop();
     }
 
 
@@ -42,6 +46,7 @@ public class GunScript : MonoBehaviour
                     {
                         hit.collider.SendMessage("HitByBullet", SendMessageOptions.DontRequireReceiver);
                     }
+                    GunAudioSource.Stop();
                     emptyChamber();
                 }
             }
@@ -57,7 +62,12 @@ public class GunScript : MonoBehaviour
     }
     public void emptyChamber()
     {
+        GunAudioSource.time = 1.5f;
+        GunAudioSource.Play();
+
         currentMagSize--;
+
+
     }
 
     public void refillGun(int bulletNumber)
