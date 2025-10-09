@@ -174,4 +174,14 @@ public class WallRunning : MonoBehaviour
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
     }
+
+    public void ChangeWallRunTime(float time)
+    {
+        maxWallRunTime = time;
+    }
+
+    public void ChangeGravityCounterforce(float force)
+    {
+        gravityCounterForce = force;
+    }
 }

@@ -9,6 +9,7 @@ public class TutorialEvent : MonoBehaviour
         if (!collider.CompareTag("PlayerObject"))
             return;
         ActiveObjects();
+        enabled = false;
     }
 
     public void ActiveObjects()

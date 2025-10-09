@@ -378,7 +378,7 @@ MonoBehaviour:
   walkSpeed: 7
   sprintSpeed: 10
   wallrunSpeed: 7
-  slideSpeed: 30
+  slideSpeed: 50
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
   groundDrag: 6
@@ -391,7 +391,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   isGrounded: 0
-  maxSlopeAngle: 40
+  maxSlopeAngle: 50
   orientation: {fileID: 3612841369590656585}
   forwardWall: 0
   forwardWallTimer: 1
