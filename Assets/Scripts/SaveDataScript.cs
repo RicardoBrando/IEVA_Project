@@ -41,7 +41,9 @@ public class SaveDataScript : MonoBehaviour
         
         if (GlobalData.level2TimeScores == null)
             GlobalData.level2TimeScores = new List<int>();
-        
+
+
+        Debug.Log(GlobalData.fugitiveGotCaughtLevel2);
 
         if (GlobalData.fugitiveGotCaughtLevel2)
         {
