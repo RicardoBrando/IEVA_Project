@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class CibleHitScript : MonoBehaviour
+{
+
+    
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        print("CibleHitScript Update");
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
